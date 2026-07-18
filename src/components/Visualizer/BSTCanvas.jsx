@@ -1,6 +1,6 @@
 import TreeRenderer from "./TreeRenderer";
 
-function BSTCanvas({ bstTree, activeIndex, traversalResult, balanceResult }) {
+function BSTCanvas({ bstTree, activeIndex, traversalResult, balanceResult, searchResult, }) {
     // Convert tree to array for display
     const treeToArray = (root) => {
         if (!root) return [];
@@ -100,6 +100,33 @@ function BSTCanvas({ bstTree, activeIndex, traversalResult, balanceResult }) {
                     </div>
                 </div>
             )}
+
+            {searchResult && (
+                    <div className="mt-10 text-center">
+                        <h3
+                            className="text-lg font-semibold"
+                            style={{
+                                color:
+                                    "var(--heading)"
+                            }}
+                        >
+                            Search Result
+                        </h3>
+
+                        <div
+                            className="mt-4 inline-block rounded-xl border px-6 py-3"
+                            style={{
+                                borderColor:
+                                    searchResult.includes("✓")
+                                        ? "#10b981"
+                                        : "#ef4444"
+                            }}
+                        >
+                            {searchResult}
+                        </div>
+                    </div>
+                )
+            }
         </>
     );
 }

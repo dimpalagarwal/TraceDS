@@ -1,6 +1,6 @@
 import Button from "../common/Button";
 
-function BSTControls({ bstTree, setBSTTree, value, setValue, activeIndex, setActiveIndex, isAnimating, setIsAnimating, traversalResult, setTraversalResult, balanceResult, setBalanceResult }) {
+function BSTControls({ bstTree, setBSTTree, value, setValue, activeIndex, setActiveIndex, isAnimating, setIsAnimating, traversalResult, setTraversalResult, balanceResult, setBalanceResult, searchResult, setSearchResult }) {
     const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
     // BST Node class
@@ -266,6 +266,32 @@ function BSTControls({ bstTree, setBSTTree, value, setValue, activeIndex, setAct
         setIsAnimating(false);
     };
 
+    const handleSearch = async () => {
+        if (!bstTree ||value === "") return;
+        setIsAnimating(true);
+        const target = Number(value);
+        let current = bstTree;
+        const displayArray = treeToArray(bstTree);
+        while (current) {
+            const idx = displayArray.indexOf(current.val);
+            setActiveIndex(idx);
+            await sleep(500);
+            if (current.val === target) {
+                setSearchResult(`✓ ${target} Found`);
+                setIsAnimating(false);
+                return;
+            }
+            if(target < current.val){
+                current = current.left;
+            }else {
+                current = current.right;
+            }
+        }
+        setSearchResult(`✗ ${target} Not Found`);
+        setActiveIndex(-1);
+        setIsAnimating(false);
+    };
+
     const handleClear = () => {
         setBSTTree(null);
         setTraversalResult(null);
@@ -324,6 +350,9 @@ function BSTControls({ bstTree, setBSTTree, value, setValue, activeIndex, setAct
 
                     <Button disabled={isAnimating} onClick={handleCheckBalance} hoverColor="yellow-500">
                         Check Balance
+                    </Button>
+                    <Button disabled={isAnimating}onClick={handleSearch}hoverColor="emerald-500">
+                        Search
                     </Button>
                     <Button disabled={isAnimating} onClick={handleClear} hoverColor="orange-500">
                             Clear

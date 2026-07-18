@@ -1,4 +1,6 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function BinarySearchControls({
     array,
@@ -14,11 +16,7 @@ function BinarySearchControls({
     isAnimating,
     setIsAnimating,
 }) {
-
-    const sleep = (ms) =>
-        new Promise(resolve =>
-            setTimeout(resolve, ms)
-        );
+    const {speed} = useSpeed();
 
     const handleBuild = () => {
 
@@ -62,7 +60,7 @@ function BinarySearchControls({
             setMidIndex(mid);
             setHighIndex(high);
 
-            await sleep(1000);
+            await sleep(1000, speed);
 
             if (
                 array[mid] === Number(target)

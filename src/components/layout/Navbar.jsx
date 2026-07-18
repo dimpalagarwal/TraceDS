@@ -7,27 +7,27 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
     const [darkMode, setDarkMode] = useState(() => {
-    return localStorage.getItem("theme") === "light"
-        ? false
-        : true;
-});
+        return localStorage.getItem("theme") === "light"
+            ? false
+            : true;
+    });
 
-const [mobileMenuOpen,setMobileMenuOpen] =
-    useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] =
+        useState(false);
 
     useEffect(() => {
 
-    document.documentElement.classList.toggle(
-        "dark",
-        darkMode
-    );
+        document.documentElement.classList.toggle(
+            "dark",
+            darkMode
+        );
 
-    localStorage.setItem(
-        "theme",
-        darkMode ? "dark" : "light"
-    );
+        localStorage.setItem(
+            "theme",
+            darkMode ? "dark" : "light"
+        );
 
-}, [darkMode]);
+    }, [darkMode]);
 
     return (
         <header className="sticky top-4 z-50 flex justify-center px-6 mt-6">
@@ -86,8 +86,13 @@ const [mobileMenuOpen,setMobileMenuOpen] =
                         </Link>
                     </li>
 
-                    <li className="cursor-pointer hover:text-emerald-500 transition-all duration-300">
-                        About
+                    <li>
+                        <a
+                            href="#about"
+                            className="hover:text-emerald-500 transition-all duration-300"
+                        >
+                            About
+                        </a>
                     </li>
 
                 </ul>
@@ -114,16 +119,18 @@ const [mobileMenuOpen,setMobileMenuOpen] =
                             borderColor: "var(--border)",
                         }}
                     >
-                        <FaGithub size={17} />
+                        <a href="https://github.com/dimpalagarwal/TraceDS" target="_blank" rel="noreferrer"style={{color: "var(--heading)"}}>
+                <FaGithub size={26} />
+              </a>
                     </button>
 
                     <button
-    onClick={() =>
-        setMobileMenuOpen(
-            !mobileMenuOpen
-        )
-    }
-    className="
+                        onClick={() =>
+                            setMobileMenuOpen(
+                                !mobileMenuOpen
+                            )
+                        }
+                        className="
         md:hidden
         w-9
         h-9
@@ -133,26 +140,26 @@ const [mobileMenuOpen,setMobileMenuOpen] =
         items-center
         justify-center
     "
-    style={{
-        borderColor:
-            "var(--border)",
-    }}
->
-    {
-        mobileMenuOpen
-        ?
-        <X size={18}/>
-        :
-        <Menu size={18}/>
-    }
-</button>
+                        style={{
+                            borderColor:
+                                "var(--border)",
+                        }}
+                    >
+                        {
+                            mobileMenuOpen
+                                ?
+                                <X size={18} />
+                                :
+                                <Menu size={18} />
+                        }
+                    </button>
 
                 </div>
                 {
-    mobileMenuOpen && (
+                    mobileMenuOpen && (
 
-        <div
-            className="
+                        <div
+                            className="
             absolute
             top-16
             left-0
@@ -163,50 +170,50 @@ const [mobileMenuOpen,setMobileMenuOpen] =
             p-4
             md:hidden
             "
-            style={{
-                background:
-                    "var(--surface)",
-                borderColor:
-                    "var(--border)",
-                boxShadow:
-                    "var(--shadow)",
-            }}
-        >
+                            style={{
+                                background:
+                                    "var(--surface)",
+                                borderColor:
+                                    "var(--border)",
+                                boxShadow:
+                                    "var(--shadow)",
+                            }}
+                        >
 
-            <div className="space-y-4">
+                            <div className="space-y-4">
 
-                <TopicsDropdown />
+                                <TopicsDropdown />
 
-                <Link
-                    to="/dashboard"
-                    className="block"
-                    onClick={() =>
-                        setMobileMenuOpen(
-                            false
-                        )
-                    }
-                >
-                    Dashboard
-                </Link>
+                                <Link
+                                    to="/dashboard"
+                                    className="block"
+                                    onClick={() =>
+                                        setMobileMenuOpen(
+                                            false
+                                        )
+                                    }
+                                >
+                                    Dashboard
+                                </Link>
 
-                <Link
-                    to="/about"
-                    className="block"
-                    onClick={() =>
-                        setMobileMenuOpen(
-                            false
-                        )
-                    }
-                >
-                    About
-                </Link>
+                                <Link
+                                    to="/about"
+                                    className="block"
+                                    onClick={() =>
+                                        setMobileMenuOpen(
+                                            false
+                                        )
+                                    }
+                                >
+                                    About
+                                </Link>
 
-            </div>
+                            </div>
 
-        </div>
+                        </div>
 
-    )
-}
+                    )
+                }
             </nav>
         </header>
     );

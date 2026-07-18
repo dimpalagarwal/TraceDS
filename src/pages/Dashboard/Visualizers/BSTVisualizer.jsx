@@ -15,6 +15,7 @@ function BSTVisualizer() {
     const [isAnimating, setIsAnimating] = useState(false);
     const [traversalResult, setTraversalResult] = useState(null);
     const [balanceResult, setBalanceResult] = useState(null);
+    const [searchResult,setSearchResult] = useState(null);
 
     return (
         <VisualizerPageLayout
@@ -73,6 +74,8 @@ function BSTVisualizer() {
                             setTraversalResult={setTraversalResult}
                             balanceResult={balanceResult}
                             setBalanceResult={setBalanceResult}
+                            searchResult={searchResult}
+                            setSearchResult={setSearchResult}
                         />
                     }
                     visualization={
@@ -81,6 +84,7 @@ function BSTVisualizer() {
                             activeIndex={activeIndex}
                             traversalResult={traversalResult}
                             balanceResult={balanceResult}
+                            searchResult={searchResult}
                         />
                     }
                 />

@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 function AboutDeveloper() {
   return (
-    <section className="w-[92%] max-w-6xl mx-auto py-15">
+    <section id="about" className="w-[92%] max-w-6xl mx-auto py-15">
 
       <div
         className="rounded-3xl border p-12 grid md:grid-cols-2 gap-12 items-center"
@@ -20,7 +20,6 @@ function AboutDeveloper() {
             alt="Dimpal"
             className="w-64 h-64 rounded-full object-cover border-4 border-emerald-500"
           />
-
         </div>
 
         <div>
@@ -28,7 +27,7 @@ function AboutDeveloper() {
           <h2
             className="text-5xl font-bold"
             style={{
-              color:"var(--heading)"
+              color: "var(--heading)"
             }}
           >
             Meet the Developer
@@ -37,10 +36,10 @@ function AboutDeveloper() {
           <p
             className="mt-6 text-lg leading-8"
             style={{
-              color:"var(--muted)"
+              color: "var(--muted)"
             }}
           >
-            Hi! I'm <b>Dimpal Agarwal</b>, a Computer Science undergraduate
+            Hi! I'm <b>Dimpal Agarwal</b>, a Computer Science undergraduate at <b>IGDTUW</b>, 
             passionate about building educational tools that make
             Data Structures & Algorithms easier to understand.
 
@@ -51,35 +50,37 @@ function AboutDeveloper() {
           <div className="flex gap-3 flex-wrap mt-8">
 
             <span className="px-4 py-2 rounded-full bg-emerald-500/20 text-emerald-400">
-              React
+              React.js
             </span>
 
             <span className="px-4 py-2 rounded-full bg-emerald-500/20 text-emerald-400">
-              C++
+              TailwindCSS
             </span>
 
             <span className="px-4 py-2 rounded-full bg-emerald-500/20 text-emerald-400">
-              DSA
+              Problem Solving
             </span>
 
             <span className="px-4 py-2 rounded-full bg-emerald-500/20 text-emerald-400">
-              Frontend
+              Javascript
             </span>
 
           </div>
 
           <div className="flex gap-5 mt-8">
 
-            <FaGithub size={26} />
+            <div className="flex gap-5 mt-8">
 
-            <FaLinkedin size={26} />
-
+              <a href="https://github.com/dimpalagarwal" target="_blank" rel="noreferrer"style={{color: "var(--heading)"}}>
+                <FaGithub size={26} />
+              </a>
+              <a href="https://www.linkedin.com/in/dimpal-agarwal-478526326/" target="_blank" rel="noreferrer" style={{color: "var(--heading)"}}>
+                <FaLinkedin size={26} />
+              </a>
+            </div>
           </div>
-
         </div>
-
       </div>
-
     </section>
   );
 }

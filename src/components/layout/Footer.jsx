@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Footer(){
 
@@ -35,19 +36,25 @@ Understand • Visualize • Build
 
 <a href="#">Home</a>
 
-<a href="#">Topics</a>
+<Link
+                            to="/dashboard"
+                            className="hover:text-emerald-500 transition-all duration-300"
+                        >
+                            Dashboard
+                        </Link>
 
-<a href="#">Dashboard</a>
-
-<a href="#">About</a>
+<a href="#about">About</a>
 
 </div>
 
 <div className="flex justify-center gap-6 mt-8">
 
-<FaGithub size={24}/>
-
-<FaLinkedin size={24}/>
+<a href="https://github.com/dimpalagarwal" target="_blank" rel="noreferrer"style={{color: "var(--heading)"}}>
+                <FaGithub size={26} />
+              </a>
+              <a href="https://www.linkedin.com/in/dimpal-agarwal-478526326/" target="_blank" rel="noreferrer" style={{color: "var(--heading)"}}>
+                <FaLinkedin size={26} />
+              </a>
 
 </div>
 
