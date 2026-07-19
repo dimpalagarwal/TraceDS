@@ -1,4 +1,6 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function JobSchedulingControls({
     jobs,
@@ -19,10 +21,7 @@ function JobSchedulingControls({
     setIsAnimating,
 }) {
 
-    const sleep = (ms) =>
-        new Promise(resolve =>
-            setTimeout(resolve,ms)
-        );
+    const {speed} = useSpeed();
 
     const addJob = () => {
 
@@ -85,7 +84,7 @@ function JobSchedulingControls({
             job.id
         );
 
-        await sleep(800);
+        await sleep(800, speed);
 
         for (
             let slot =
@@ -120,7 +119,7 @@ function JobSchedulingControls({
             }
         }
 
-        await sleep(500);
+        await sleep(500, speed);
     }
 
     setActiveJob("");

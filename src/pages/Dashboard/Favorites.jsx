@@ -5,12 +5,19 @@ import StructureCard from "../../components/common/StructureCard";
 import { getFavorites } from "../../utils/favorites";
 import { dsSections } from "../../data/DsCards";
 import { algorithmSections } from "../../data/Algorithms";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Favorites() {
-
-    const [sidebarOpen,setSidebarOpen] =
-        useState(true);
+        const [sidebarOpen, setSidebarOpen] = useState(() => {
+            const saved = localStorage.getItem("sidebarOpen");
+            return saved !== null ? JSON.parse(saved) : false;
+          });
+          useEffect(() => {
+            localStorage.setItem(
+                "sidebarOpen",
+                JSON.stringify(sidebarOpen)
+            );
+        }, [sidebarOpen]);
 
     const favoriteIds =
         getFavorites();

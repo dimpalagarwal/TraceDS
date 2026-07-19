@@ -1,4 +1,6 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function PrimControls({
     vertices,
@@ -25,10 +27,7 @@ function PrimControls({
     setIsAnimating,
 }) {
 
-    const sleep = (ms) =>
-        new Promise(resolve =>
-            setTimeout(resolve, ms)
-        );
+    const {speed} = useSpeed();
 
     const addVertex = () => {
 
@@ -122,7 +121,7 @@ function PrimControls({
             startNode,
         ]);
 
-        await sleep(700);
+        await sleep(700, speed);
 
         while (
             visited.size <
@@ -209,7 +208,7 @@ function PrimControls({
                 ...visited,
             ]);
 
-            await sleep(1000);
+            await sleep(1000, speed);
         }
 
         setResult(

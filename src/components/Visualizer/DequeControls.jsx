@@ -1,7 +1,9 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function DequeControls({ deque, setDeque, value, setValue, activeIndex, setActiveIndex, isAnimating, setIsAnimating, peekValue, setPeekValue }) {
-    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const {speed} = useSpeed();
 
     const handleInsertFront = async () => {
         if (value === "") return;
@@ -11,10 +13,10 @@ function DequeControls({ deque, setDeque, value, setValue, activeIndex, setActiv
         const temp = [Number(value), ...deque];
         
         setActiveIndex(0);
-        await sleep(500);
+        await sleep(500, speed);
         
         setDeque(temp);
-        await sleep(400);
+        await sleep(400, speed);
         
         setActiveIndex(-1);
         setValue("");
@@ -31,10 +33,10 @@ function DequeControls({ deque, setDeque, value, setValue, activeIndex, setActiv
         temp.push(Number(value));
         
         setActiveIndex(temp.length - 1);
-        await sleep(500);
+        await sleep(500, speed);
         
         setDeque(temp);
-        await sleep(400);
+        await sleep(400, speed);
         
         setActiveIndex(-1);
         setValue("");
@@ -51,17 +53,17 @@ function DequeControls({ deque, setDeque, value, setValue, activeIndex, setActiv
         setIsAnimating(true);
         
         setActiveIndex(0);
-        await sleep(500);
+        await sleep(500, speed);
         
         const temp = [...deque];
         temp.shift();
         setPeekValue(deque[0]);
         
         setDeque(temp);
-        await sleep(400);
+        await sleep(400, speed);
         
         setActiveIndex(-1);
-        await sleep(300);
+        await sleep(300, speed);
         setPeekValue(null);
         
         setIsAnimating(false);
@@ -76,17 +78,17 @@ function DequeControls({ deque, setDeque, value, setValue, activeIndex, setActiv
         setIsAnimating(true);
         
         setActiveIndex(deque.length - 1);
-        await sleep(500);
+        await sleep(500, speed);
         
         const temp = [...deque];
         temp.pop();
         setPeekValue(deque[deque.length - 1]);
         
         setDeque(temp);
-        await sleep(400);
+        await sleep(400, speed);
         
         setActiveIndex(-1);
-        await sleep(300);
+        await sleep(300, speed);
         setPeekValue(null);
         
         setIsAnimating(false);
@@ -101,13 +103,13 @@ function DequeControls({ deque, setDeque, value, setValue, activeIndex, setActiv
         setIsAnimating(true);
         
         setActiveIndex(0);
-        await sleep(400);
+        await sleep(400, speed);
         
         setPeekValue(deque[0]);
-        await sleep(600);
+        await sleep(600, speed);
         
         setActiveIndex(-1);
-        await sleep(300);
+        await sleep(300, speed);
         setPeekValue(null);
         
         setIsAnimating(false);
@@ -122,13 +124,13 @@ function DequeControls({ deque, setDeque, value, setValue, activeIndex, setActiv
         setIsAnimating(true);
         
         setActiveIndex(deque.length - 1);
-        await sleep(400);
+        await sleep(400, speed);
         
         setPeekValue(deque[deque.length - 1]);
-        await sleep(600);
+        await sleep(600, speed);
         
         setActiveIndex(-1);
-        await sleep(300);
+        await sleep(300, speed);
         setPeekValue(null);
         
         setIsAnimating(false);

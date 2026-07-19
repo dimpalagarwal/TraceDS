@@ -1,40 +1,145 @@
 :root {
-  /* Light Theme - Refined */
-  --bg: #f8fafc;        /* Clean slate background */
-  --surface: #ffffff;   /* Crisp white surfaces */
-  
-  /* IMPROVED: Subtler border for a sleeker, more modern grid layout */
-  --border: #f1f5f9;    /* slate-100 instead of slate-200 */
-
-  /* IMPROVED: Deeper greens for high-contrast accessibility on white backgrounds */
-  --primary: #059669;        /* emerald-600 (Darker green for text/buttons to pop) */
-  --primary-hover: #047857;  /* emerald-700 */
-
-  --heading: #0f172a;   /* Deep slate-900 for punchy headers */
-  
-  /* IMPROVED: Darkened body/muted text to avoid looking washed out */
-  --text: #334155;     /* slate-700 instead of slate-600 */
-  --muted: #475569;    /* slate-600 instead of slate-500 */
-  
+  --bg: #f8fafc;        
+  --surface: #ffffff;   
+  --border: #f1f5f9;    
+  --primary: #059669;        
+  --primary-hover: #047857;  
+  --heading: #0f172a;  
+  --text: #334155;     
+  --muted: #475569;   
   --dot-color: rgba(15, 23, 42, 0.05);
-
-  /* IMPROVED: Softer, more diffuse shadow so it doesn't look muddy */
   --shadow: 0 10px 40px -10px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
 }
 
 .dark {
-  /* Dark Theme */
   --bg: #050b18;
   --surface: #081120;
   --border: #1e293b;
-
   --primary: #10b981;
   --primary-hover: #34d399;
-
   --heading: #f8fafc;
   --text: #cbd5e1;
   --muted: #94a3b8;
   --dot-color: rgba(255, 255, 255, 0.05);
-
   --shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== Visualizer Heading ===== */
+
+.visualizer-heading {
+    color: var(--heading);
+    font-size: 1.125rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+@media (min-width: 640px) {
+    .visualizer-heading {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+        text-align: left;
+    }
+}
+
+@media (min-width: 768px) {
+    .visualizer-heading {
+        font-size: 1.5rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+.visualizer-subtitle {
+    color: var(--muted);
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+@media (min-width: 640px) {
+    .visualizer-subtitle {
+        margin-top: 0.75rem;
+        font-size: 1.125rem;
+    }
+}
+
+/* ===== Visualizer Page Title ===== */
+
+.visualizer-title {
+    color: var(--heading);
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+    .visualizer-title {
+        font-size: 1.875rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .visualizer-title {
+        font-size: 2.25rem;
+    }
+}
+
+/* ===== Visualizer Input ===== */
+
+.visualizer-input {
+    width: 100%;
+    padding: 0.5rem 0.65rem;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    outline: none;
+    background: var(--card);
+    color: var(--text);
+    font-size: 0.6rem;
+    transition: all 0.2s ease;
+}
+
+.visualizer-input::placeholder {
+    color: var(--muted);
+}
+
+.visualizer-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+}
+
+/* Tablet and Desktop */
+@media (min-width: 640px) {
+    .visualizer-input {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+}
+
+/* ===== Visualizer Button ===== */
+
+.visualizer-button {
+    width: 100%;
+    padding: 0.4rem 0.55rem;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    color: var(--text);
+    font-size: 0.6rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.visualizer-button:hover {
+    color: white;
+}
+
+.visualizer-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Tablet & Desktop */
+@media (min-width: 640px) {
+    .visualizer-button {
+        padding: 0.5rem 0.85rem;
+        font-size: 1rem;
+    }
 }

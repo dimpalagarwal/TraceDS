@@ -1,7 +1,9 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function LinkedListControls({list,setList,value,setValue,index,setIndex,activeIndex,setActiveIndex,isAnimating,setIsAnimating,setAccessResult}) {
-    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const {speed} = useSpeed();
     const handleInsert = async () => {
         console.log("Insert Clicked");
 
@@ -22,13 +24,13 @@ function LinkedListControls({list,setList,value,setValue,index,setIndex,activeIn
 
     for (let j = 0; j <= i; j++) {
         setActiveIndex(j);
-        await sleep(400);
+        await sleep(400, speed);
     }
     temp.splice(i, 0, Number(value));
 
     setList(temp);
 
-    await sleep(500);
+    await sleep(500, speed);
 
     setActiveIndex(-1);
 
@@ -54,7 +56,7 @@ const handleDelete = async () => {
 
     for (let j = 0; j <= i; j++) {
         setActiveIndex(j);
-        await sleep(400);
+        await sleep(400, speed);
     }
 
     const temp = [...list];
@@ -63,7 +65,7 @@ const handleDelete = async () => {
 
     setList(temp);
 
-    await sleep(500);
+    await sleep(500, speed);
 
     setActiveIndex(-1);
 
@@ -86,10 +88,10 @@ const handleUpdate = async () => {
 
     for (let j = 0; j <= i; j++) {
         setActiveIndex(j);
-        await sleep(450);
+        await sleep(450, speed);
     }
 
-    await sleep(500);
+    await sleep(500, speed);
 
     const temp = [...list];
 
@@ -97,7 +99,7 @@ const handleUpdate = async () => {
 
     setList(temp);
 
-    await sleep(500);
+    await sleep(500, speed);
 
     setActiveIndex(-1);
 
@@ -123,7 +125,7 @@ const handleAccess = async () => {
 
     for (let j = 0; j <= i; j++) {
         setActiveIndex(j);
-        await sleep(450);
+        await sleep(450, speed);
     }
 
     setAccessResult({
@@ -131,7 +133,7 @@ const handleAccess = async () => {
         value: list[i],
     });
 
-    await sleep(500);
+    await sleep(500, speed);
 
     setActiveIndex(-1);
 

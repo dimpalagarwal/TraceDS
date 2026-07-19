@@ -1,7 +1,9 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function HeapControls({ heapType, setHeapType, maxHeap, setMaxHeap, minHeap, setMinHeap, value, setValue, activeIndex, setActiveIndex, isAnimating, setIsAnimating, peekValue, setPeekValue }) {
-    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const {speed} = useSpeed();
 
     // Helper function to get parent index
     const getParentIndex = (index) => Math.floor((index - 1) / 2);
@@ -16,7 +18,7 @@ function HeapControls({ heapType, setHeapType, maxHeap, setMaxHeap, minHeap, set
             
             if (shouldSwap) {
                 setActiveIndexFn(index);
-                await sleep(300);
+                await sleep(300, speed);
                 [arr[index], arr[parentIndex]] = [arr[parentIndex], arr[index]];
                 index = parentIndex;
             } else {
@@ -50,7 +52,7 @@ function HeapControls({ heapType, setHeapType, maxHeap, setMaxHeap, minHeap, set
 
             if (extreme !== index) {
                 setActiveIndexFn(index);
-                await sleep(300);
+                await sleep(300, speed);
                 [arr[index], arr[extreme]] = [arr[extreme], arr[index]];
                 index = extreme;
             } else {
@@ -72,12 +74,12 @@ function HeapControls({ heapType, setHeapType, maxHeap, setMaxHeap, minHeap, set
         temp.push(Number(value));
 
         setActiveIndex(temp.length - 1);
-        await sleep(400);
+        await sleep(400, speed);
 
         await heapifyUp(temp, temp.length - 1, setActiveIndex, isMax);
 
         setCurrentHeap(temp);
-        await sleep(400);
+        await sleep(400, speed);
 
         setActiveIndex(-1);
         setValue("");
@@ -98,7 +100,7 @@ function HeapControls({ heapType, setHeapType, maxHeap, setMaxHeap, minHeap, set
         setPeekValue(extremeValue);
 
         setActiveIndex(0);
-        await sleep(400);
+        await sleep(400, speed);
 
         temp[0] = temp[temp.length - 1];
         temp.pop();
@@ -108,10 +110,10 @@ function HeapControls({ heapType, setHeapType, maxHeap, setMaxHeap, minHeap, set
         }
 
         setCurrentHeap(temp);
-        await sleep(400);
+        await sleep(400, speed);
 
         setActiveIndex(-1);
-        await sleep(300);
+        await sleep(300, speed);
         setPeekValue(null);
 
         setIsAnimating(false);
@@ -126,13 +128,13 @@ function HeapControls({ heapType, setHeapType, maxHeap, setMaxHeap, minHeap, set
         setIsAnimating(true);
 
         setActiveIndex(0);
-        await sleep(400);
+        await sleep(400, speed);
 
         setPeekValue(currentHeap[0]);
-        await sleep(600);
+        await sleep(600, speed);
 
         setActiveIndex(-1);
-        await sleep(300);
+        await sleep(300, speed);
         setPeekValue(null);
 
         setIsAnimating(false);

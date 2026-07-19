@@ -1,7 +1,9 @@
+import { useSpeed } from "../../context/SpeedContext";
 import Button from "../common/Button";
+import { sleep } from "../../utils/sleep";
 
 function QueueControls({ queue, setQueue, value, setValue, activeIndex, setActiveIndex, isAnimating, setIsAnimating, frontValue, setFrontValue }) {
-    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const {speed} = useSpeed();
 
     const handleEnqueue = async () => {
         if (value === "") return;
@@ -12,10 +14,10 @@ function QueueControls({ queue, setQueue, value, setValue, activeIndex, setActiv
         temp.push(Number(value));
         
         setActiveIndex(temp.length - 1);
-        await sleep(500);
+        await sleep(500, speed);
         
         setQueue(temp);
-        await sleep(400);
+        await sleep(400, speed);
         
         setActiveIndex(-1);
         setValue("");
@@ -32,17 +34,17 @@ function QueueControls({ queue, setQueue, value, setValue, activeIndex, setActiv
         setIsAnimating(true);
         
         setActiveIndex(0);
-        await sleep(500);
+        await sleep(500, speed);
         
         const temp = [...queue];
         const dequeuedValue = temp.shift();
         setFrontValue(dequeuedValue);
         
         setQueue(temp);
-        await sleep(400);
+        await sleep(400, speed);
         
         setActiveIndex(-1);
-        await sleep(300);
+        await sleep(300, speed);
         setFrontValue(null);
         
         setIsAnimating(false);
@@ -57,13 +59,13 @@ function QueueControls({ queue, setQueue, value, setValue, activeIndex, setActiv
         setIsAnimating(true);
         
         setActiveIndex(0);
-        await sleep(400);
+        await sleep(400, speed);
         
         setFrontValue(queue[0]);
-        await sleep(600);
+        await sleep(600, speed);
         
         setActiveIndex(-1);
-        await sleep(300);
+        await sleep(300, speed);
         setFrontValue(null);
         
         setIsAnimating(false);

@@ -1,7 +1,9 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function SegmentTreeControls({ array, setArray, root, setRoot, inputArray, setInputArray, left, setLeft, right, setRight, updateIndex, setUpdateIndex, updateValue, setUpdateValue, setQueryResult, highlightNode,setHighlightNode,}) {
-    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const {speed} = useSpeed();
     const buildTree = (arr, start, end) => {
         if (start === end) {
             return { val: arr[start], start, end, left: null, right: null, };
@@ -41,13 +43,13 @@ function SegmentTreeControls({ array, setArray, root, setRoot, inputArray, setIn
 
     const updateTree = async (node, idx, value) => {
         setHighlightNode(node.val);
-        await sleep(700);
+        await sleep(700, speed);
         if (
             node.start === idx && node.end === idx
         ) {
             node.val = value;
             setHighlightNode(node.val);
-            await sleep(700);
+            await sleep(700, speed);
             return;
         }
 
@@ -58,7 +60,7 @@ function SegmentTreeControls({ array, setArray, root, setRoot, inputArray, setIn
         node.val = node.left.val + node.right.val;
 
         setHighlightNode(node.val);
-        await sleep(700);
+        await sleep(700, speed);
     };
 
     const handleUpdate = async () => {
@@ -73,7 +75,7 @@ function SegmentTreeControls({ array, setArray, root, setRoot, inputArray, setIn
         setArray(newArray);
         setRoot(newRoot);
 
-        await sleep(700);
+        await sleep(700, speed);
         setHighlightNode(null);
     };
 

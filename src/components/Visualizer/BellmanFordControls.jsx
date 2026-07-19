@@ -1,4 +1,6 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function BellmanFordControls({
     vertices,
@@ -25,10 +27,7 @@ function BellmanFordControls({
     setIsAnimating,
 }) {
 
-    const sleep = (ms) =>
-        new Promise(resolve =>
-            setTimeout(resolve, ms)
-        );
+    const {speed} = useSpeed();
 
     const addVertex = () => {
 
@@ -139,7 +138,7 @@ function BellmanFordControls({
 
     setDistances({ ...dist });
 
-    await sleep(800);
+    await sleep(800, speed);
 
     // Relax all edges V-1 times
     for (let i = 0; i < vertices.length - 1; i++) {
@@ -150,7 +149,7 @@ function BellmanFordControls({
 
             setActiveEdges([edge]);
 
-            await sleep(600);
+            await sleep(600, speed);
 
             if (
                 dist[edge.from] !== Infinity &&
@@ -170,7 +169,7 @@ function BellmanFordControls({
                     edge.to
                 ]);
 
-                await sleep(600);
+                await sleep(600, speed);
             }
         }
 

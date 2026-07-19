@@ -1,4 +1,6 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function HashTableControls({
     table,
@@ -16,10 +18,7 @@ function HashTableControls({
     tableSize,
 }) {
 
-    const sleep = (ms) =>
-        new Promise((resolve) =>
-            setTimeout(resolve, ms)
-        );
+    const {speed} = useSpeed();
 
     const hash = (value) =>
         value % tableSize;
@@ -39,7 +38,7 @@ function HashTableControls({
 
         setActiveBucket(bucket);
 
-        await sleep(700);
+        await sleep(700, speed);
 
         const newTable = [...table];
 
@@ -52,7 +51,7 @@ function HashTableControls({
 
         setActiveValue(num);
 
-        await sleep(700);
+        await sleep(700, speed);
 
         setActiveBucket(-1);
         setActiveValue(null);
@@ -77,7 +76,7 @@ function HashTableControls({
 
         setActiveBucket(bucket);
 
-        await sleep(700);
+        await sleep(700, speed);
 
         let found = false;
 
@@ -85,7 +84,7 @@ function HashTableControls({
 
             setActiveValue(element);
 
-            await sleep(600);
+            await sleep(600, speed);
 
             if (element === num) {
 
@@ -122,13 +121,13 @@ function HashTableControls({
 
         setActiveBucket(bucket);
 
-        await sleep(700);
+        await sleep(700, speed);
 
         setResult(
             `Hash(${num}) = ${bucket}`
         );
 
-        await sleep(700);
+        await sleep(700, speed);
 
         setActiveBucket(-1);
 
@@ -150,7 +149,7 @@ function HashTableControls({
 
         setActiveBucket(bucket);
 
-        await sleep(700);
+        await sleep(700, speed);
 
         const newTable = [...table];
 
@@ -166,7 +165,7 @@ function HashTableControls({
                 newTable[bucket][i]
             );
 
-            await sleep(600);
+            await sleep(600, speed);
 
             if (
                 newTable[bucket][i] === num

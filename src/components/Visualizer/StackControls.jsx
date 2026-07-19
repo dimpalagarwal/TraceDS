@@ -1,7 +1,9 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function StackControls({ stack, setStack, value, setValue, activeIndex, setActiveIndex, isAnimating, setIsAnimating, peekValue, setPeekValue }) {
-    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const {speed} = useSpeed();
 
     const handlePush = async () => {
         if (value === "") return;
@@ -12,15 +14,15 @@ function StackControls({ stack, setStack, value, setValue, activeIndex, setActiv
         temp.push(Number(value));
         
         setActiveIndex(temp.length - 1);
-        await sleep(500);
+        await sleep(500, speed);
         
         setStack(temp);
-        await sleep(400);
+        await sleep(400, speed);
         
         setActiveIndex(-1);
         setValue("");
         setPeekValue(temp[temp.length - 1]);
-        await sleep(300);
+        await sleep(300, speed);
         setPeekValue(null);
         
         setIsAnimating(false);
@@ -35,17 +37,17 @@ function StackControls({ stack, setStack, value, setValue, activeIndex, setActiv
         setIsAnimating(true);
         
         setActiveIndex(stack.length - 1);
-        await sleep(500);
+        await sleep(500, speed);
         
         const temp = [...stack];
         const poppedValue = temp.pop();
         setPeekValue(poppedValue);
         
         setStack(temp);
-        await sleep(400);
+        await sleep(400, speed);
         
         setActiveIndex(-1);
-        await sleep(300);
+        await sleep(300, speed);
         setPeekValue(null);
         
         setIsAnimating(false);
@@ -60,13 +62,13 @@ function StackControls({ stack, setStack, value, setValue, activeIndex, setActiv
         setIsAnimating(true);
         
         setActiveIndex(stack.length - 1);
-        await sleep(400);
+        await sleep(400, speed);
         
         setPeekValue(stack[stack.length - 1]);
-        await sleep(600);
+        await sleep(600, speed);
         
         setActiveIndex(-1);
-        await sleep(300);
+        await sleep(300, speed);
         setPeekValue(null);
         
         setIsAnimating(false);

@@ -1,4 +1,6 @@
+import { useSpeed } from "../../context/SpeedContext";
 import Button from "../common/Button";
+import { sleep } from "../../utils/sleep";
 
 function HuffmanControls({
     characters,
@@ -17,10 +19,7 @@ function HuffmanControls({
     setIsAnimating,
 }) {
 
-    const sleep = (ms) =>
-        new Promise(resolve =>
-            setTimeout(resolve, ms)
-        );
+    const {speed} = useSpeed();
 
     const addCharacter = () => {
 
@@ -111,7 +110,7 @@ function HuffmanControls({
                 right.value,
             ]);
 
-            await sleep(800);
+            await sleep(800, speed);
 
             const merged = {
 

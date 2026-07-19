@@ -1,4 +1,6 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function KruskalControls({
     vertices,
@@ -23,10 +25,7 @@ function KruskalControls({
     setIsAnimating,
 }) {
 
-    const sleep = (ms) =>
-        new Promise(resolve =>
-            setTimeout(resolve, ms)
-        );
+    const {speed} = useSpeed();
 
     const addVertex = () => {
 
@@ -230,7 +229,7 @@ function KruskalControls({
                     ]
                 );
 
-                await sleep(1000);
+                await sleep(1000, speed);
             }
         }
 

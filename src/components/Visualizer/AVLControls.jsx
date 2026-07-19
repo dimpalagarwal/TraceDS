@@ -1,4 +1,6 @@
+import { useSpeed } from "../../context/SpeedContext";
 import Button from "../common/Button";
+import { sleep } from "../../utils/sleep";
 
 class AVLNode {
     constructor(val) {
@@ -10,7 +12,7 @@ class AVLNode {
 }
 
 function AVLControls({ root, setRoot, value, setValue, rotationType, setRotationType, highlightNode, setHighlightNode, message, setMessage, displayRoot, setDisplayRoot }) {
-    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const {speed} = useSpeed();
     const height = (node) => {
         return node ? node.height : 0;
     };
@@ -92,10 +94,10 @@ function AVLControls({ root, setRoot, value, setValue, rotationType, setRotation
         setRotationType("");
         setMessage("");
         const newRoot = insertAVL( cloneTree(root),Number(value));
-        await sleep(1500);
+        await sleep(1500, speed);
         setRoot(newRoot);
         setDisplayRoot(newRoot);
-        await sleep(1000);
+        await sleep(1000, speed);
         setHighlightNode(null);
         setValue("");
     };

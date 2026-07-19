@@ -1,21 +1,9 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
-function TrieControls({
-  root,
-  setRoot,
-  word,
-  setWord,
-  activePath,
-  setActivePath,
-  searchResult,
-  setSearchResult,
-  isAnimating,
-  setIsAnimating,
-}) {
-  const sleep = (ms) =>
-    new Promise((resolve) =>
-      setTimeout(resolve, ms)
-    );
+function TrieControls({root,setRoot,word,setWord,activePath,setActivePath,searchResult,setSearchResult,isAnimating,setIsAnimating,}) {
+  const {speed} = useSpeed();
 
   const insertWord = () => {
     if (!word.trim()) return;
@@ -59,7 +47,7 @@ function TrieControls({
 
       setActivePath([...path]);
 
-      await sleep(600);
+      await sleep(600, speed);
 
       if (!current.children[ch]) {
         setSearchResult(

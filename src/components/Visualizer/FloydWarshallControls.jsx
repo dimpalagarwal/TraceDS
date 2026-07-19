@@ -1,4 +1,6 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function FloydWarshallControls({
     vertices,
@@ -23,10 +25,7 @@ function FloydWarshallControls({
     setIsAnimating,
 }) {
 
-    const sleep = (ms) =>
-        new Promise(resolve =>
-            setTimeout(resolve,ms)
-        );
+    const {speed} = useSpeed();
 
     const addVertex = () => {
 
@@ -135,7 +134,7 @@ function FloydWarshallControls({
             )
         );
 
-        await sleep(700);
+        await sleep(700, speed);
 
         for (
             let k = 0;
@@ -147,7 +146,7 @@ function FloydWarshallControls({
                 vertices[k].id
             ]);
 
-            await sleep(500);
+            await sleep(500, speed);
 
             for (
                 let i = 0;
@@ -177,7 +176,7 @@ function FloydWarshallControls({
                             )
                         );
 
-                        await sleep(250);
+                        await sleep(250, speed);
                     }
                 }
             }

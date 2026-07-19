@@ -1,7 +1,9 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function GraphControls({vertices,setVertices,edges,setEdges,vertex,setVertex,from,setFrom,to,setTo,startNode,setStartNode,activeNodes,setActiveNodes,traversalOrder,setTraversalOrder,isAnimating,setIsAnimating,}) {
-    const sleep = (ms) =>new Promise(resolve =>setTimeout(resolve, ms));
+    const {speed} = useSpeed();
     const addVertex = () => {
         if (!vertex.trim()) return;
         if (
@@ -126,7 +128,7 @@ function GraphControls({vertices,setVertices,edges,setEdges,vertex,setVertex,fro
                 ]
             );
 
-            await sleep(700);
+            await sleep(700, speed);
 
             for (
                 const next
@@ -167,7 +169,7 @@ function GraphControls({vertices,setVertices,edges,setEdges,vertex,setVertex,fro
             ]
         );
 
-        await sleep(700);
+        await sleep(700, speed);
 
         for (
             const next

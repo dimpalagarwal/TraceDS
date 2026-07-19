@@ -1,7 +1,9 @@
 import Button from "../common/Button";
+import { useSpeed } from "../../context/SpeedContext";
+import { sleep } from "../../utils/sleep";
 
 function BSTControls({ bstTree, setBSTTree, value, setValue, activeIndex, setActiveIndex, isAnimating, setIsAnimating, traversalResult, setTraversalResult, balanceResult, setBalanceResult, searchResult, setSearchResult }) {
-    const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+    const {speed} = useSpeed();
 
     // BST Node class
     class BSTNode {
@@ -122,7 +124,7 @@ function BSTControls({ bstTree, setBSTTree, value, setValue, activeIndex, setAct
             setBSTTree(root);
         }
 
-        await sleep(400);
+        await sleep(400, speed);
         setValue("");
         setTraversalResult(null);
         setBalanceResult(null);
@@ -146,12 +148,12 @@ function BSTControls({ bstTree, setBSTTree, value, setValue, activeIndex, setAct
         for (let val of result) {
             const idx = displayArray.indexOf(val);
             setActiveIndex(idx);
-            await sleep(400);
+            await sleep(400, speed);
         }
 
         setActiveIndex(-1);
         setTraversalResult(`Inorder: ${result.join(" → ")}`);
-        await sleep(300);
+        await sleep(300, speed);
 
         setIsAnimating(false);
     };
@@ -170,12 +172,12 @@ function BSTControls({ bstTree, setBSTTree, value, setValue, activeIndex, setAct
         for (let val of result) {
             const idx = displayArray.indexOf(val);
             setActiveIndex(idx);
-            await sleep(400);
+            await sleep(400, speed);
         }
 
         setActiveIndex(-1);
         setTraversalResult(`Preorder: ${result.join(" → ")}`);
-        await sleep(300);
+        await sleep(300, speed);
 
         setIsAnimating(false);
     };
@@ -194,12 +196,12 @@ function BSTControls({ bstTree, setBSTTree, value, setValue, activeIndex, setAct
         for (let val of result) {
             const idx = displayArray.indexOf(val);
             setActiveIndex(idx);
-            await sleep(400);
+            await sleep(400, speed);
         }
 
         setActiveIndex(-1);
         setTraversalResult(`Postorder: ${result.join(" → ")}`);
-        await sleep(300);
+        await sleep(300, speed);
 
         setIsAnimating(false);
     };
@@ -211,13 +213,13 @@ function BSTControls({ bstTree, setBSTTree, value, setValue, activeIndex, setAct
         }
 
         setIsAnimating(true);
-        await sleep(300);
+        await sleep(300, speed);
 
         const { balanced } = isBalanced(bstTree);
 
         setBalanceResult(balanced ? "✓ Tree is Balanced" : "✗ Tree is Not Balanced");
         setActiveIndex(-1);
-        await sleep(300);
+        await sleep(300, speed);
 
         setIsAnimating(false);
     };
@@ -258,7 +260,7 @@ function BSTControls({ bstTree, setBSTTree, value, setValue, activeIndex, setAct
             setBSTTree(newRoot);
         }
 
-        await sleep(400);
+        await sleep(400, speed);
         setValue("");
         setTraversalResult(null);
         setBalanceResult(null);
@@ -275,7 +277,7 @@ function BSTControls({ bstTree, setBSTTree, value, setValue, activeIndex, setAct
         while (current) {
             const idx = displayArray.indexOf(current.val);
             setActiveIndex(idx);
-            await sleep(500);
+            await sleep(500, speed);
             if (current.val === target) {
                 setSearchResult(`✓ ${target} Found`);
                 setIsAnimating(false);

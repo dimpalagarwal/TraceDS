@@ -1,10 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "../../components/dashboard/Sidebar";
 import DashboardHeader from "../../components/dashboard/DashboardHeader";
 import DataStructures from "./DataStructures";
 
 function Dashboard() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    const saved = localStorage.getItem("sidebarOpen");
+    return saved !== null ? JSON.parse(saved) : false;
+  });
+  useEffect(() => {
+    localStorage.setItem(
+        "sidebarOpen",
+        JSON.stringify(sidebarOpen)
+    );
+}, [sidebarOpen]);
 
   return (
     <div

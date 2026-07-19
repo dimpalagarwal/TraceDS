@@ -1,4 +1,6 @@
+import { useSpeed } from "../../context/SpeedContext";
 import Button from "../common/Button";
+import { sleep } from "../../utils/sleep";
 
 function LinearSearchControls({
     array,
@@ -14,8 +16,7 @@ function LinearSearchControls({
     setIsAnimating
 }) {
 
-    const sleep = (ms) =>
-        new Promise(resolve => setTimeout(resolve, ms));
+    const {speed} = useSpeed();
 
     const handleBuild = () => {
 
@@ -44,7 +45,7 @@ function LinearSearchControls({
 
             setActiveIndex(i);
 
-            await sleep(600);
+            await sleep(600, speed);
 
             if (array[i] === Number(target)) {
 

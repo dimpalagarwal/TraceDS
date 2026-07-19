@@ -3,6 +3,7 @@ import Landing from "./pages/landing/Landing";
 import DashboardProvider from "./context/DashboardContext";
 import DashboardRoutes from "./routes/DashboardRoutes";
 import {SpeedProvider,} from "./context/SpeedContext";
+import "./styles/theme.css"
 
 function App() {
     return (

@@ -1,9 +1,21 @@
-const Button = ({ children, onClick, disabled = false, hoverColor = "emerald-500" }) => {
+const Button = ({
+    children,
+    onClick,
+    disabled = false,
+    variant = "success",
+}) => {
     return (
         <button
+            type="button"
             disabled={disabled}
             onClick={onClick}
-            className={`rounded-xl border py-2 text-sm cursor-pointer hover:bg-${hoverColor} hover:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed w-full`}>
+            className={`visualizer-button
+                ${variant === "success" ? "hover:bg-emerald-500" : ""}
+                ${variant === "danger" ? "hover:bg-red-500" : ""}
+                ${variant === "warning" ? "hover:bg-yellow-500" : ""}
+                ${variant === "primary" ? "hover:bg-blue-500" : ""}
+            `}
+        >
             {children}
         </button>
     );
